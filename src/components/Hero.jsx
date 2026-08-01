@@ -74,10 +74,12 @@ export default function Hero() {
           
           {/* Print only Vercel Link at the top */}
           <div className="hidden print:block mb-6 print:w-full print:text-center">
-            <p className="text-sm text-gray-600">
-              Interactive Portofolio: <br/>
-              <a href="https://my-portfolio-alpha-roan-39.vercel.app/" target="_blank" rel="noreferrer" className="text-black font-bold border-b border-gray-500 text-base">https://my-portfolio-alpha-roan-39.vercel.app/</a>
+            <p className="text-sm text-gray-600 mb-1">
+              Interactive Portofolio:
             </p>
+            <a href="https://my-portfolio-alpha-roan-39.vercel.app/" target="_blank" rel="noreferrer" className="text-black font-bold border-b border-gray-500 text-base">
+              Kunjungi Web ↗
+            </a>
           </div>
 
           <motion.h1 
