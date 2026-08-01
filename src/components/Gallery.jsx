@@ -14,11 +14,11 @@ export default function Gallery() {
   };
 
   return (
-    <section id="certificates" className="relative py-20 md:py-28 bg-[#f8f8f8] bg-dot-grid overflow-hidden">
+    <section id="certificates" className="relative py-20 md:py-28 bg-[#f8f8f8] bg-dot-grid overflow-hidden print:block print:py-5 print:h-auto print:overflow-visible">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12 print:mb-6">
           <div>
             <h2 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] font-black text-black leading-[1.05] tracking-tight italic">
               Certificates
@@ -27,7 +27,7 @@ export default function Gallery() {
               A collection of my professional certifications and completed courses.
             </p>
           </div>
-          <div className="shrink-0">
+          <div className="shrink-0 print:hidden">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 text-xs font-semibold text-gray-600">
               <span className="w-2 h-2 rounded-full bg-black"></span>
               {certificates?.length || 0} Certificates
@@ -36,15 +36,17 @@ export default function Gallery() {
         </div>
 
         {/* Certificates Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {certificates && certificates.slice(0, visibleCount).map((cert, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 print:grid-cols-3 print:gap-4 print:mb-4">
+          {certificates && certificates.map((cert, idx) => {
+            const isHidden = idx >= visibleCount;
+            return (
             <motion.div
               key={cert.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
+              className={`group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col print:break-inside-avoid print:!opacity-100 print:!transform-none print:border-gray-200 print:shadow-none ${isHidden ? 'hidden print:flex' : ''}`}
             >
               {/* Certificate Image */}
               <div className="aspect-[4/3] bg-gray-200 overflow-hidden relative border-b border-gray-100 shrink-0">
@@ -66,33 +68,34 @@ export default function Gallery() {
               </div>
               
               {/* Certificate Details */}
-              <div className="p-6 flex-1 flex flex-col justify-between">
+              <div className="p-6 flex-1 flex flex-col justify-between print:p-3">
                 <div>
-                  <h3 className="font-bold text-black text-lg mb-2 leading-tight line-clamp-2">
+                  <h3 className="font-bold text-black text-lg mb-2 leading-tight line-clamp-2 print:text-sm print:mb-1">
                     {cert.title}
                   </h3>
                   {cert.description && (
-                    <p className="text-sm text-gray-500 leading-relaxed line-clamp-3">
+                    <p className="text-sm text-gray-500 leading-relaxed line-clamp-3 print:text-[10px] print:leading-tight">
                       {cert.description}
                     </p>
                   )}
                 </div>
-                <div className="flex items-center justify-between mt-5 border-t border-gray-100 pt-4">
-                  <span className="text-sm font-semibold text-gray-800 line-clamp-1">
+                <div className="flex items-center justify-between mt-5 border-t border-gray-100 pt-4 print:mt-2 print:pt-2">
+                  <span className="text-sm font-semibold text-gray-800 line-clamp-1 print:text-[10px]">
                     {cert.issuer}
                   </span>
-                  <span className="text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full shrink-0">
+                  <span className="text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full shrink-0 print:px-2 print:py-0 print:text-[9px]">
                     {cert.year}
                   </span>
                 </div>
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
         
         {/* Load More Button */}
         {certificates && visibleCount < certificates.length && (
-          <div className="mt-14 flex justify-center">
+          <div className="mt-14 flex justify-center print:hidden">
             <button
               onClick={handleShowMore}
               className="px-8 py-3.5 bg-black text-white rounded-full font-bold text-[15px] hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl active:scale-95"

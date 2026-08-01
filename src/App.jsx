@@ -43,8 +43,12 @@ export default function App() {
         <Experience />
         <Skills />
         <Projects />
-        <Gallery />
-        <Contact />
+        <div className="print:block">
+          <Gallery />
+        </div>
+        <div className="print:hidden">
+          <Contact />
+        </div>
       </main>
       <Footer />
     </div>

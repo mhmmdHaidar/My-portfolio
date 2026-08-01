@@ -18,22 +18,22 @@ export default function Projects() {
   const visibleProjects = showAll ? filteredProjects : filteredProjects.slice(0, 3);
 
   return (
-    <section id="projects" className="relative py-20 md:py-28 bg-[#f8f8f8] bg-dot-grid overflow-hidden">
+    <section id="projects" className="relative py-20 md:py-28 bg-[#f8f8f8] bg-dot-grid overflow-hidden print:block print:py-5 print:h-auto print:overflow-visible">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <p className="text-xs text-gray-400 uppercase tracking-[0.25em] font-semibold mb-4">PORTFOLIO</p>
+        <div className="text-center mb-12 print:mb-6">
+          <p className="text-xs text-gray-400 uppercase tracking-[0.25em] font-semibold mb-4 print:mb-2">PORTFOLIO</p>
           <h2 className="text-[2.5rem] sm:text-[3.5rem] md:text-[4rem] font-black text-black leading-[1.05] tracking-tight italic">
             Featured Projects
           </h2>
-          <p className="text-gray-400 text-sm mt-4">
+          <p className="text-gray-400 text-sm mt-4 print:mt-1 print:text-xs">
             A collection of my recent work, side projects, and experiments.
           </p>
         </div>
 
         {/* Category Filter Tabs - pill style */}
-        <div className="flex items-center justify-center gap-3 mb-12 flex-wrap">
+        <div className="flex items-center justify-center gap-3 mb-12 flex-wrap print:hidden">
           {categories.map((cat) => {
             const isActive = activeCategory === cat;
             return (
@@ -53,9 +53,11 @@ export default function Projects() {
         </div>
 
         {/* Project Cards Grid - borderless style like reference */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 print:grid-cols-3 print:gap-4 print:mb-4">
           <AnimatePresence mode="popLayout">
-            {visibleProjects.map((project) => (
+            {filteredProjects.map((project, idx) => {
+              const isHidden = !showAll && idx >= 3;
+              return (
               <motion.div
                 key={project.id}
                 layout
@@ -64,10 +66,10 @@ export default function Projects() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.35 }}
                 onClick={() => setSelectedProject(project)}
-                className="group cursor-pointer"
+                className={`group cursor-pointer print:break-inside-avoid print:mb-2 print:!opacity-100 print:!transform-none ${isHidden ? 'hidden print:block' : ''}`}
               >
                 {/* Image container with rounded corners and shadow */}
-                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-gray-200 shadow-md group-hover:shadow-xl transition-shadow duration-300">
+                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-gray-200 shadow-md group-hover:shadow-xl transition-shadow duration-300 print:aspect-[21/9] print:rounded-lg">
                   <img
                     src={project.thumbnail}
                     alt={project.title}
@@ -82,25 +84,26 @@ export default function Projects() {
                 </div>
 
                 {/* Info below image */}
-                <div className="mt-4 flex items-start justify-between gap-2">
+                <div className="mt-4 flex items-start justify-between gap-2 print:mt-2">
                   <div>
-                    <h3 className="text-base font-extrabold text-black group-hover:underline underline-offset-2">
+                    <h3 className="text-base font-extrabold text-black group-hover:underline underline-offset-2 print:text-sm">
                       {project.title}
                     </h3>
-                    <p className="text-xs text-gray-500 mt-1">{project.shortDesc}</p>
+                    <p className="text-xs text-gray-500 mt-1 print:text-[10px] print:mt-0.5 print:leading-tight">{project.shortDesc}</p>
                   </div>
-                  <span className="shrink-0 px-3 py-1 rounded-full border border-gray-300 text-[11px] font-semibold text-gray-500">
+                  <span className="shrink-0 px-3 py-1 rounded-full border border-gray-300 text-[11px] font-semibold text-gray-500 print:px-2 print:py-0 print:text-[9px]">
                     {project.category}
                   </span>
                 </div>
               </motion.div>
-            ))}
+              );
+            })}
           </AnimatePresence>
         </motion.div>
 
         {/* Load More Button */}
         {filteredProjects.length > 3 && !showAll && (
-          <div className="flex justify-center mt-12">
+          <div className="flex justify-center mt-12 print:hidden">
             <button
               onClick={() => setShowAll(true)}
               className="px-6 py-2.5 rounded-full border border-gray-300 text-sm font-semibold text-gray-700 hover:bg-gray-100 transition-colors flex items-center gap-2"

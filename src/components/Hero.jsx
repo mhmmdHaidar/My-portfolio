@@ -16,17 +16,17 @@ export default function Hero() {
   ];
 
   return (
-    <section id="home" className="relative min-h-screen bg-gradient-to-br from-slate-950 via-[#0e0e1a] to-[#0a0c1a] flex flex-col justify-between overflow-hidden">
+    <section id="home" className="relative min-h-screen bg-gradient-to-br from-slate-950 via-[#0e0e1a] to-[#0a0c1a] flex flex-col justify-between overflow-hidden print:bg-white print:block print:min-h-0 print:h-auto print:overflow-visible">
 
       {/* Dynamic Background glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-indigo-500/20 via-blue-900/10 to-transparent pointer-events-none z-0"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-cyan-500/20 via-transparent to-transparent pointer-events-none z-0"></div>
-      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none z-0"></div>
-      <div className="absolute bottom-[-10%] right-1/4 w-[600px] h-[600px] bg-blue-600/10 blur-[130px] rounded-full pointer-events-none z-0"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-indigo-500/20 via-blue-900/10 to-transparent pointer-events-none z-0 print:hidden"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-cyan-500/20 via-transparent to-transparent pointer-events-none z-0 print:hidden"></div>
+      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none z-0 print:hidden"></div>
+      <div className="absolute bottom-[-10%] right-1/4 w-[600px] h-[600px] bg-blue-600/10 blur-[130px] rounded-full pointer-events-none z-0 print:hidden"></div>
       
       {/* Subtle Dot Matrix Grid */}
       <div 
-        className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
+        className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none print:hidden"
         style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}
       ></div>
 
@@ -39,7 +39,7 @@ export default function Hero() {
           className="whitespace-nowrap"
           style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
         >
-          <h1 className="text-[7rem] sm:text-[9rem] md:text-[11rem] lg:text-[14rem] font-black leading-none tracking-tighter text-white/10">
+          <h1 className="text-[7rem] sm:text-[9rem] md:text-[11rem] lg:text-[14rem] font-black leading-none tracking-tighter text-white/10 print:text-black/5">
             CREATIVE DEVELOPER
           </h1>
         </motion.div>
@@ -51,7 +51,7 @@ export default function Hero() {
           className="whitespace-nowrap"
           style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
         >
-          <h1 className="text-[7rem] sm:text-[9rem] md:text-[11rem] lg:text-[14rem] font-black leading-none tracking-tighter text-transparent opacity-20" style={{ WebkitTextStroke: '3px white' }}>
+          <h1 className="text-[7rem] sm:text-[9rem] md:text-[11rem] lg:text-[14rem] font-black leading-none tracking-tighter text-transparent opacity-20 print:opacity-10" style={{ WebkitTextStroke: '3px white' }}>
             HAIDAR
           </h1>
         </motion.div>
@@ -63,19 +63,28 @@ export default function Hero() {
           opacity: [0.5, 0.7, 0.5]
         }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="hero-glow absolute inset-0 pointer-events-none z-0"
+        className="hero-glow absolute inset-0 pointer-events-none z-0 print:hidden"
       ></motion.div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col lg:flex-row items-center justify-center relative z-10 px-6 pt-28 pb-20 w-full max-w-7xl mx-auto gap-12 lg:gap-24">
+      <div className="flex-1 flex flex-col lg:flex-row items-center justify-center relative z-10 px-6 pt-28 pb-20 w-full max-w-7xl mx-auto gap-12 lg:gap-24 print:block print:pt-10 print:pb-10">
 
         {/* Left Side: Hero Text */}
         <div className="relative z-30 flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
+          
+          {/* Print only Vercel Link at the top */}
+          <div className="hidden print:block mb-6 print:w-full print:text-center">
+            <p className="text-sm text-gray-600">
+              Interactive Portofolio: <br/>
+              <a href="https://my-portfolio-alpha-roan-39.vercel.app/" target="_blank" rel="noreferrer" className="text-black font-bold border-b border-gray-500 text-base">https://my-portfolio-alpha-roan-39.vercel.app/</a>
+            </p>
+          </div>
+
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5rem] xl:text-[5.5rem] font-black text-white leading-[1.1] tracking-tight"
+            className="text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5rem] xl:text-[5.5rem] font-black text-white leading-[1.1] tracking-tight print:text-black"
           >
             <motion.span 
               initial={{ color: "#ffffff" }}
@@ -93,9 +102,9 @@ export default function Hero() {
             transition={{ duration: 1, delay: 0.6 }}
             className="mt-6 md:mt-8 space-y-2 relative"
           >
-            <p className="text-gray-400 text-sm md:text-lg max-w-lg font-medium">
+            <p className="text-gray-400 text-sm md:text-lg max-w-lg font-medium print:text-gray-700">
               I craft modern web experiences that are{' '}
-              <span className="text-white font-bold underline decoration-gray-500 underline-offset-4 decoration-2">
+              <span className="text-white font-bold underline decoration-gray-500 underline-offset-4 decoration-2 print:text-black">
                 scalable
               </span>,{' '}
               interactive, and visually striking.
@@ -106,7 +115,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="mt-10 hidden lg:block"
+            className="mt-10 hidden lg:block print:hidden"
           >
             <a
               href="#projects"
@@ -121,16 +130,16 @@ export default function Hero() {
         </div>
 
         {/* Right Side: Circular portrait */}
-        <div className="flex-1 flex justify-center items-center relative w-full pt-6 lg:pt-0">
+        <div className="flex-1 flex justify-center items-center relative w-full pt-6 lg:pt-0 print:mt-10">
           <motion.div
             style={{ y }}
-            className="w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[460px] md:h-[460px] lg:w-[480px] lg:h-[480px] pointer-events-none flex items-center justify-center relative z-20"
+            className="w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[460px] md:h-[460px] lg:w-[480px] lg:h-[480px] pointer-events-none flex items-center justify-center relative z-20 print:mx-auto print:w-[300px] print:h-[300px]"
           >
             {/* Orbiting ring with glowing meteors */}
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-[-10%] border border-gray-800/80 rounded-full border-t-indigo-500/30 border-r-cyan-500/30"
+              className="absolute inset-[-10%] border border-gray-800/80 rounded-full border-t-indigo-500/30 border-r-cyan-500/30 print:hidden"
             >
               {/* Glowing Meteor 1 */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-indigo-400 rounded-full shadow-[0_0_15px_4px_rgba(99,102,241,0.6)]"></div>
@@ -139,14 +148,19 @@ export default function Hero() {
             </motion.div>
 
             <div className="w-full h-full rounded-full overflow-hidden opacity-90 shadow-2xl relative">
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent z-10 print:hidden"></div>
               <motion.img
                 initial={{ scale: 1.95, y: '0%', filter: 'blur(4px)' }}
                 animate={{ scale: 1.65, y: '-8%', filter: 'blur(0px)' }}
                 transition={{ duration: 1.5, ease: "easeOut" }}
                 src={personal.avatarMain}
                 alt={personal.name}
-                className="w-full h-full object-cover object-center pointer-events-auto"
+                className="w-full h-full object-cover object-center pointer-events-auto print:hidden"
+              />
+              <img
+                src={personal.avatarMain}
+                alt={personal.name}
+                className="hidden print:block w-full h-full object-cover object-center scale-[1.5] -translate-y-[8%]"
               />
             </div>
           </motion.div>
@@ -165,7 +179,7 @@ export default function Hero() {
                 ease: "easeInOut",
                 delay: shape.delay 
               }}
-              className={`absolute ${shape.position} flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl text-white/50 shadow-2xl z-30 pointer-events-none`}
+              className={`absolute ${shape.position} flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl text-white/50 shadow-2xl z-30 pointer-events-none print:hidden`}
             >
               {shape.icon}
             </motion.div>
@@ -177,7 +191,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
-          className="w-full flex justify-center lg:hidden mt-4 relative z-30"
+          className="w-full flex justify-center lg:hidden mt-4 relative z-30 print:hidden"
         >
           <a
             href="#projects"

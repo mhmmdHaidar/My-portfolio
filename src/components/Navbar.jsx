@@ -22,7 +22,7 @@ export default function Navbar({ activeSection, isDarkSection }) {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent ${scrolled ? 'backdrop-blur-sm' : ''}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent print:hidden ${scrolled ? 'backdrop-blur-sm' : ''}`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-16 lg:h-20">
           

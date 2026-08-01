@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Clock, MapPin, ArrowUp, Check, Mail, MessageCircle, ExternalLink, Github, Linkedin, Instagram, Music } from 'lucide-react';
+import { Clock, MapPin, ArrowUp, Check, Mail, MessageCircle, ExternalLink, Github, Linkedin, Instagram, Music, Printer } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 export default function Footer() {
@@ -43,7 +43,7 @@ export default function Footer() {
 
         {/* Availability Badge */}
         <div className="mb-8">
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-700/60 text-xs font-semibold text-green-400">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-700/60 text-xs font-semibold text-green-400 print:hidden">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
             Available for new projects
           </span>
@@ -62,7 +62,7 @@ export default function Footer() {
               {personal.tagline}
             </p>
 
-            <div className="flex flex-wrap gap-3 mb-8">
+            <div className="flex flex-wrap gap-3 mb-8 print:hidden">
               {/* Email (Copy logic) */}
               <button
                 onClick={() => handleCopy(personal.email, 'Email')}
@@ -109,6 +109,30 @@ export default function Footer() {
               })}
             </div>
 
+            {/* Print-only Social Contacts */}
+            <div className="hidden print:flex flex-col gap-2.5 mb-8 text-black">
+              <div className="flex items-center gap-3">
+                <Mail size={16} className="text-gray-600" />
+                <a href={`mailto:${personal.email}`} className="text-sm font-bold">{personal.email}</a>
+              </div>
+              <div className="flex items-center gap-3">
+                <MessageCircle size={16} className="text-gray-600" />
+                <a href={`https://wa.me/${personal.phone.replace(/[^0-9]/g, '')}`} target="_blank" rel="noreferrer" className="text-sm font-bold">{personal.phone.replace(/[^0-9]/g, '')}</a>
+              </div>
+              <div className="flex items-center gap-3">
+                <Github size={16} className="text-gray-600" />
+                <a href={socials.find(s => s.name.toLowerCase() === 'github')?.url} target="_blank" rel="noreferrer" className="text-sm font-bold">mhmmdHaidar</a>
+              </div>
+              <div className="flex items-center gap-3">
+                <Linkedin size={16} className="text-gray-600" />
+                <a href={socials.find(s => s.name.toLowerCase() === 'linkedin')?.url} target="_blank" rel="noreferrer" className="text-sm font-bold">Muhammad Haidar</a>
+              </div>
+              <div className="flex items-center gap-3">
+                <Instagram size={16} className="text-gray-600" />
+                <a href={socials.find(s => s.name.toLowerCase() === 'instagram')?.url} target="_blank" rel="noreferrer" className="text-sm font-bold">hdarrrr_12</a>
+              </div>
+            </div>
+
             <div className="w-fit flex items-center gap-4 text-xs font-medium text-gray-500 bg-white/5 px-4 py-2.5 rounded-full border border-white/5">
               <div className="flex items-center gap-1.5"><MapPin size={14} className="text-gray-400" /> {personal.location}</div>
               <div className="w-1 h-1 rounded-full bg-gray-700"></div>
@@ -117,7 +141,7 @@ export default function Footer() {
           </div>
 
           {/* Navigation & Widgets Column */}
-          <div className="flex flex-col gap-8 w-full lg:max-w-sm lg:justify-self-end lg:ml-auto mt-12 lg:mt-0">
+          <div className="flex flex-col gap-8 w-full lg:max-w-sm lg:justify-self-end lg:ml-auto mt-12 lg:mt-0 print:hidden">
 
             {/* Horizontal Menu Categories */}
             <div>
@@ -200,18 +224,29 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-6 relative">
-          <p className="text-xs text-gray-500 text-center md:text-left">© {new Date().getFullYear()} {personal.name}. All rights reserved.</p>
+        <div className="mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-6 relative">
+          <div className="flex flex-col gap-2 items-center md:items-start">
+            <p className="text-xs text-gray-500 text-center md:text-left">© {new Date().getFullYear()} {personal.name}. All rights reserved.</p>
+          </div>
 
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="md:absolute left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black hover:-translate-y-2 transition-all duration-300"
+            className="md:absolute left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black hover:-translate-y-2 transition-all duration-300 print:hidden"
             aria-label="Back to top"
           >
             <ArrowUp size={20} />
           </button>
 
-          <p className="text-xs text-gray-500 font-medium text-center md:text-right">Built with React, TailwindCSS & Framer Motion</p>
+          <div className="flex flex-col items-center md:items-end gap-3 print:hidden">
+            <button
+              onClick={() => window.print()}
+              className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:text-white transition-all text-xs font-bold text-gray-300"
+            >
+              <Printer size={14} className="group-hover:scale-110 transition-transform" />
+              Print / Save PDF
+            </button>
+            <p className="text-xs text-gray-500 font-medium text-center md:text-right">Built with React, TailwindCSS & Framer Motion</p>
+          </div>
         </div>
       </div>
     </footer>

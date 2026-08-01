@@ -53,3 +53,13 @@
   border-radius: 50%;
   pointer-events: none;
 }
+
+/* Hide default browser header/footer (date) in print mode */
+@media print {
+  @page {
+    margin: 0;
+  }
+  body {
+    padding: 1.5cm;
+  }
+}
