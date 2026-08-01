@@ -51,6 +51,8 @@ export default function About() {
             <div className="mt-10 print:hidden">
               <a
                 href={personal.resumeUrl}
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex px-6 py-3 bg-black text-white rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors"
                 onClick={(e) => {
                   if (personal.resumeUrl === "#") {

@@ -8,7 +8,7 @@ export const portfolioData = {
     email: "mhmmdhaidar1212@gmail.com", // User can change this anytime
     phone: "+6283877392831",
     bio: "Saya adalah seorang Web Developer passionate yang berfokus pada pengembangan aplikasi web modern, antarmuka interaktif responsif, dan arsitektur sistem yang scalable. Memiliki ketertarikan tinggi pada UI/UX clean design serta pengalaman membuat berbagai solusi digital berbasis React, Next.js, dan Laravel.",
-    resumeUrl: "https://drive.google.com/uc?export=download&id=1MILDc7xheYrrt9tCLdH35GxdPlyEdGsG",
+    resumeUrl: "https://drive.google.com/uc?export=download&id=1Vv6-3Jg7wlBN6gL21fCOfkwl8U9J2RP8",
     avatarMain: "/assets/haidar2.webp",
     avatarAlt: "/assets/haidar1.webp",
   },
