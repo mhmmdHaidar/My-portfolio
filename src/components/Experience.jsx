@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Experience() {
+  const { language, t } = useLanguage();
   const { experiences } = portfolioData;
   const [showAll, setShowAll] = useState(false);
   const visibleExperiences = showAll ? experiences : experiences.slice(0, 2);
 
   return (
-    <section id="experience" className="relative py-20 md:py-28 bg-[#f8f8f8] bg-dot-grid overflow-hidden print:block print:py-5 print:h-auto print:overflow-visible">
+    <section id="experience" className="relative py-20 md:py-28 bg-transparent bg-dot-grid overflow-hidden print:block print:py-5 print:h-auto print:overflow-visible">
       
       <div className="max-w-5xl mx-auto px-6 lg:px-12 relative z-10">
         
         {/* Section Header */}
         <div className="text-center mb-16 print:mb-6">
-          <p className="text-xs text-gray-400 uppercase tracking-[0.25em] font-semibold mb-4 print:mb-2">CAREER PATH</p>
+          <p className="text-xs text-gray-400 uppercase tracking-[0.25em] font-semibold mb-4 print:mb-2">
+            {language === 'en' ? 'CAREER PATH' : 'PERJALANAN KARIR'}
+          </p>
           <h2 className="text-[2.5rem] sm:text-[3.5rem] md:text-[4rem] font-black text-black leading-[1.05] tracking-tight italic">
-            Experience
+            {t('txt_experience')}
           </h2>
         </div>
 
@@ -44,12 +48,12 @@ export default function Experience() {
 
                   {/* Period badge */}
                   <span className="inline-block px-4 py-1.5 rounded-full bg-gray-200 text-xs font-bold text-gray-700 mb-4 print:py-0.5 print:mb-2 print:text-[10px]">
-                    {exp.period}
+                    {exp.period[language] || exp.period}
                   </span>
 
                   {/* Content */}
                   <h3 className="text-xl md:text-2xl font-extrabold text-black leading-tight mb-2 print:text-base print:mb-1">
-                    {exp.role}
+                    {exp.role[language] || exp.role}
                   </h3>
                   
                   <p className="text-sm text-gray-500 flex items-center gap-2 mb-4 print:mb-2 print:text-xs">
@@ -59,7 +63,7 @@ export default function Experience() {
                     <span>{exp.company}</span>
                   </p>
 
-                  <p className="text-[15px] text-gray-600 leading-relaxed mb-4 print:text-xs print:mb-2 print:leading-snug">{exp.description}</p>
+                  <p className="text-[15px] text-gray-600 leading-relaxed mb-4 print:text-xs print:mb-2 print:leading-snug">{exp.description[language] || exp.description}</p>
 
                   {/* Skills tags */}
                   <div className="flex flex-wrap gap-2">
@@ -85,7 +89,7 @@ export default function Experience() {
                 onClick={() => setShowAll(!showAll)}
                 className="px-6 py-2.5 rounded-full border border-gray-300 text-sm font-semibold text-gray-700 hover:bg-gray-100 transition-colors"
               >
-                {showAll ? 'See Less' : 'See More'}
+                {showAll ? (language === 'en' ? 'See Less' : 'Lihat Lebih Sedikit') : (language === 'en' ? 'See More' : 'Lihat Lebih Banyak')}
               </button>
             </div>
           )}

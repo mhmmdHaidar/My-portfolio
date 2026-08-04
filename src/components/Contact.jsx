@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Contact() {
+  const { language, t } = useLanguage();
   const { personal, socials } = portfolioData;
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [status, setStatus] = useState('idle'); // 'idle', 'loading', 'success', 'error'
@@ -47,17 +49,17 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-20 md:py-28 bg-[#f8f8f8] bg-dot-grid overflow-hidden">
+    <section id="contact" className="relative py-20 md:py-28 bg-transparent bg-dot-grid overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 lg:px-12 relative z-10">
         
         {/* Section Header */}
         <div className="text-center mb-16">
-          <p className="text-xs text-gray-400 uppercase tracking-[0.25em] font-semibold mb-4">GET IN TOUCH</p>
+          <p className="text-xs text-gray-400 uppercase tracking-[0.25em] font-semibold mb-4">{t('txt_get_in_touch')}</p>
           <h2 className="text-[2.5rem] sm:text-[3.5rem] md:text-[4rem] font-black text-black leading-[1.05] tracking-tight italic">
-            Contact Me
+            {t('txt_contact')}
           </h2>
           <p className="text-gray-400 text-sm mt-4">
-            Have a project in mind or want to collaborate? Send me a message.
+            {language === 'en' ? 'Have a project in mind or want to collaborate? Send me a message.' : 'Punya proyek yang ingin diwujudkan atau ingin berkolaborasi? Kirimi saya pesan.'}
           </p>
         </div>
 
@@ -69,13 +71,13 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
           >
             <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-              <h3 className="text-xl font-extrabold text-black mb-1">Send a Message</h3>
-              <p className="text-xs text-gray-400 mb-6 shrink-0">I usually respond within 24 hours.</p>
+              <h3 className="text-xl font-extrabold text-black mb-1">{t('txt_send_msg')}</h3>
+              <p className="text-xs text-gray-400 mb-6 shrink-0">{t('txt_usually_respond')}</p>
 
               <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
                 <input
                   type="text"
-                  placeholder="Your Name"
+                  placeholder={t('placeholder_name')}
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -83,7 +85,7 @@ export default function Contact() {
                 />
                 <input
                   type="email"
-                  placeholder="Your Email"
+                  placeholder={t('placeholder_email')}
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -91,13 +93,13 @@ export default function Contact() {
                 />
                 <input
                   type="text"
-                  placeholder="Subject"
+                  placeholder={t('placeholder_subject')}
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-gray-400 transition-colors shrink-0"
                 />
                 <textarea
-                  placeholder="Your Message"
+                  placeholder={t('placeholder_msg')}
                   required
                   rows={4}
                   value={formData.message}
@@ -114,10 +116,10 @@ export default function Contact() {
                       'bg-black text-white hover:bg-gray-800'
                     }`}
                   >
-                    {status === 'loading' ? 'Sending...' : 
-                     status === 'success' ? 'Message Sent Successfully! ✅' : 
-                     status === 'error' ? 'Failed to send ❌' : 
-                     'Send Message'}
+                    {status === 'loading' ? t('btn_sending') : 
+                     status === 'success' ? t('btn_sent_success') : 
+                     status === 'error' ? t('btn_sent_error') : 
+                     t('btn_send_msg')}
                   </button>
                 </div>
               </form>

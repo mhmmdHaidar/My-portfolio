@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function ProjectModal({ project, onClose }) {
+  const { language, t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   if (!project) return null;
@@ -102,20 +104,20 @@ export default function ProjectModal({ project, onClose }) {
               <div className="flex items-start justify-between gap-4">
                 <h3 className="text-2xl font-extrabold text-black">{project.title}</h3>
                 <span className="shrink-0 px-3 py-1 rounded-full border border-gray-300 text-xs font-semibold text-gray-500">
-                  {project.category}
+                  {project.category[language] || project.category}
                 </span>
               </div>
 
               <p className="text-[15px] text-gray-600 leading-relaxed">
-                {project.fullDesc || project.shortDesc}
+                {(project.fullDesc && project.fullDesc[language]) || (project.shortDesc && project.shortDesc[language]) || project.fullDesc || project.shortDesc}
               </p>
 
               {/* Features */}
               {project.features && (
                 <div>
-                  <h4 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3">Key Features</h4>
+                  <h4 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3">{t('txt_key_features')}</h4>
                   <ul className="space-y-2">
-                    {project.features.map((feat, idx) => (
+                    {(project.features[language] || project.features).map((feat, idx) => (
                       <li key={idx} className="flex items-start gap-3 text-sm text-gray-600">
                         <span className="w-1.5 h-1.5 rounded-full bg-black mt-1.5 shrink-0"></span>
                         <span>{feat}</span>
@@ -127,7 +129,7 @@ export default function ProjectModal({ project, onClose }) {
 
               {/* Tech Stack */}
               <div>
-                <h4 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3">Tech Stack</h4>
+                <h4 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3">{t('txt_tech_stack')}</h4>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag, idx) => (
                     <span
@@ -149,7 +151,7 @@ export default function ProjectModal({ project, onClose }) {
                     rel="noreferrer"
                     className="px-5 py-2.5 rounded-full border border-gray-300 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
                   >
-                    Source Code
+                    {t('txt_source_code')}
                   </a>
                 )}
                 {project.liveUrl && project.liveUrl !== '#' && (
@@ -159,7 +161,7 @@ export default function ProjectModal({ project, onClose }) {
                     rel="noreferrer"
                     className="px-5 py-2.5 rounded-full bg-black text-white text-sm font-semibold hover:bg-gray-800 transition-colors"
                   >
-                    Live Demo →
+                    {t('txt_live_demo')} →
                   </a>
                 )}
               </div>

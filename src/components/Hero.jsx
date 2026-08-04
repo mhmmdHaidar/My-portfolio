@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import { Code2, Terminal, Braces, Cpu } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Hero() {
+  const { language, t } = useLanguage();
   const { personal, keywordsTicker } = portfolioData;
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
+
+  // Generate random particles once
+  const particles = useMemo(() => {
+    return [...Array(30)].map(() => ({
+      size: Math.random() * 4 + 2, // 2px to 6px
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      duration: Math.random() * 15 + 15, // 15s to 30s
+      delay: Math.random() * 5,
+      xOffset: Math.random() * 100 - 50,
+      baseOpacity: 0.3 + Math.random() * 0.5
+    }));
+  }, []);
 
   const floatingShapes = [
     { icon: <Code2 size={24} />, position: 'top-[10%] left-0 md:-left-12', delay: 0 },
@@ -29,6 +44,35 @@ export default function Hero() {
         className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none print:hidden"
         style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}
       ></div>
+
+      {/* Floating Particles (WOW Effect) */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none print:hidden">
+        {particles.map((p, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-white"
+            style={{
+              width: p.size,
+              height: p.size,
+              left: `${p.left}%`,
+              top: `${p.top}%`,
+              boxShadow: `0 0 ${p.size}px rgba(255,255,255,0.5)`,
+            }}
+            animate={{
+              y: [0, -200, 0],
+              x: [0, p.xOffset, 0],
+              opacity: [0, p.baseOpacity, 0],
+              scale: [0.5, 1.2, 0.5]
+            }}
+            transition={{
+              duration: p.duration,
+              repeat: Infinity,
+              ease: "linear",
+              delay: p.delay
+            }}
+          />
+        ))}
+      </div>
 
       {/* Vertical Drifting Typography Watermarks */}
       <div className="absolute inset-y-0 left-[-2%] md:left-4 z-0 flex flex-row items-center justify-center gap-2 md:gap-6 pointer-events-none select-none overflow-hidden">
@@ -75,10 +119,10 @@ export default function Hero() {
           {/* Print only Vercel Link at the top */}
           <div className="hidden print:block mb-6 print:w-full print:text-center">
             <p className="text-sm text-gray-600 mb-1">
-              Interactive Portofolio:
+              {t('txt_interactive_portfolio')}
             </p>
-            <a href="https://my-portfolio-alpha-roan-39.vercel.app/" target="_blank" rel="noreferrer" className="text-black font-bold border-b border-gray-500 text-base">
-              Kunjungi Web ↗
+            <a href="https://haidar-portofolio.vercel.app/" target="_blank" rel="noreferrer" className="text-black font-bold border-b border-gray-500 text-base">
+              {t('btn_visit_web')}
             </a>
           </div>
 
@@ -94,7 +138,7 @@ export default function Hero() {
               transition={{ duration: 0.3 }}
               className="inline-block cursor-default"
             >
-              Welcome to My Portfolio.
+              {language === 'en' ? 'Welcome to My Portfolio.' : 'Selamat Datang di Portofolio Saya.'}
             </motion.span>
           </motion.h1>
 
@@ -105,11 +149,15 @@ export default function Hero() {
             className="mt-6 md:mt-8 space-y-2 relative"
           >
             <p className="text-gray-400 text-sm md:text-lg max-w-lg font-medium print:text-gray-700">
-              I craft modern web experiences that are{' '}
-              <span className="text-white font-bold underline decoration-gray-500 underline-offset-4 decoration-2 print:text-black">
-                scalable
-              </span>,{' '}
-              interactive, and visually striking.
+              {language === 'en' ? (
+                <>I craft modern web experiences that are{' '}
+                <span className="text-white font-bold underline decoration-gray-500 underline-offset-4 decoration-2 print:text-black">scalable</span>,{' '}
+                interactive, and visually striking.</>
+              ) : (
+                <>Saya merancang pengalaman web modern yang{' '}
+                <span className="text-white font-bold underline decoration-gray-500 underline-offset-4 decoration-2 print:text-black">scalable</span>,{' '}
+                interaktif, dan memukau secara visual.</>
+              )}
             </p>
           </motion.div>
 
@@ -123,7 +171,7 @@ export default function Hero() {
               href="#projects"
               className="inline-flex items-center gap-3 px-8 py-3.5 bg-white text-black rounded-full text-[15px] font-bold hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 group/btn"
             >
-              <span>Explore My Work</span>
+              <span>{t('btn_explore')}</span>
               <svg className="w-5 h-5 group-hover/btn:translate-x-1 group-hover/btn:-rotate-45 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
               </svg>
@@ -199,7 +247,7 @@ export default function Hero() {
             href="#projects"
             className="inline-flex items-center gap-3 px-8 py-3.5 bg-white text-black rounded-full text-[15px] font-bold hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 group/btn"
           >
-            <span>Explore My Work</span>
+            <span>{t('btn_explore')}</span>
             <svg className="w-5 h-5 group-hover/btn:translate-x-1 group-hover/btn:-rotate-45 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
             </svg>

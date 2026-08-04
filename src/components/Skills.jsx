@@ -1,12 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Skills() {
+  const { language, t } = useLanguage();
   const { skillCategories } = portfolioData;
 
   return (
-    <section id="skills" className="relative py-20 md:py-28 bg-[#f8f8f8] bg-dot-grid overflow-hidden print:block print:py-5 print:h-auto print:overflow-visible">
+    <section id="skills" className="relative py-20 md:py-28 bg-transparent bg-dot-grid overflow-hidden print:block print:py-5 print:h-auto print:overflow-visible">
       
       {/* Decorative arcs */}
       <div className="decorative-arc -left-60 top-10 w-[600px] h-[600px] print:hidden"></div>
@@ -17,10 +19,12 @@ export default function Skills() {
         {/* Section Header */}
         <div className="text-center mb-16 print:mb-6">
           <h2 className="text-[2.5rem] sm:text-[3.5rem] md:text-[4rem] font-black text-black leading-[1.05] tracking-tight italic">
-            Technical Arsenal
+            {t('txt_skills')}
           </h2>
           <div className="w-12 h-[3px] bg-black mx-auto mt-4 mb-4 print:my-2"></div>
-          <p className="text-gray-400 text-sm">My preferred weapons of choice.</p>
+          <p className="text-gray-400 text-sm">
+            {language === 'en' ? 'My preferred weapons of choice.' : 'Senjata pilihan andalan saya.'}
+          </p>
         </div>
 
         {/* Skills Cards Grid - 3 columns matching reference's 4-column with our 3 categories */}
@@ -35,7 +39,7 @@ export default function Skills() {
               className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm print:break-inside-avoid print:p-4 print:!opacity-100 print:!transform-none"
             >
               <h3 className="text-lg font-bold text-black italic text-center mb-6 print:mb-3 print:text-base">
-                {cat.title}
+                {cat.title[language] || cat.title}
               </h3>
 
               {/* 2x3 Grid of icon squares */}

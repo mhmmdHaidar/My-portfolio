@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 // We keep the component name as Gallery to avoid breaking existing imports/routing, 
 // but functionally it is now the Certificates section.
 export default function Gallery() {
+  const { language } = useLanguage();
   const { certificates } = portfolioData;
   const [visibleCount, setVisibleCount] = useState(3);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -14,19 +16,16 @@ export default function Gallery() {
   };
 
   return (
-    <section id="certificates" className="relative py-20 md:py-28 bg-[#f8f8f8] bg-dot-grid overflow-hidden print:block print:py-5 print:h-auto print:overflow-visible">
+    <section id="certificates" className="relative py-20 md:py-28 bg-transparent bg-dot-grid overflow-hidden print:block print:py-5 print:h-auto print:overflow-visible">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12 print:mb-6">
-          <div>
-            <h2 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] font-black text-black leading-[1.05] tracking-tight italic">
-              Certificates
-            </h2>
-            <p className="text-gray-400 text-sm mt-3 max-w-md">
-              A collection of my professional certifications and completed courses.
-            </p>
-          </div>
+        <div className="text-center mb-12 print:mb-6">
+          <h2 className="text-[2.5rem] sm:text-[3.5rem] md:text-[4rem] font-black text-black leading-[1.05] tracking-tight italic">
+            {language === 'en' ? 'Certificates' : 'Sertifikat'}
+          </h2>
+          <p className="text-gray-400 text-sm mt-4 print:mt-1 print:text-xs max-w-2xl mx-auto">
+            {language === 'en' ? 'A collection of my professional certifications and completed courses.' : 'Koleksi sertifikasi profesional dan kursus yang telah saya selesaikan.'}
+          </p>
         </div>
 
         {/* Certificates Grid Layout */}
@@ -69,7 +68,7 @@ export default function Gallery() {
                   </h3>
                   {cert.description && (
                     <p className="text-sm text-gray-500 leading-relaxed line-clamp-3 print:text-[10px] print:leading-tight">
-                      {cert.description}
+                      {cert.description[language] || cert.description}
                     </p>
                   )}
                 </div>
@@ -94,7 +93,7 @@ export default function Gallery() {
               onClick={handleShowMore}
               className="px-8 py-3.5 bg-black text-white rounded-full font-bold text-[15px] hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl active:scale-95"
             >
-              Show More Certificates
+              {language === 'en' ? 'Show More Certificates' : 'Lihat Lebih Banyak'}
             </button>
           </div>
         )}

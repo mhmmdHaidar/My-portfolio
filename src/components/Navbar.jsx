@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Navbar({ activeSection, isDarkSection }) {
+  const { language, toggleLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
+    { name: t('nav_home'), key: 'nav_home', href: '#home' },
+    { name: t('nav_about'), key: 'nav_about', href: '#about' },
+    { name: t('nav_projects'), key: 'nav_projects', href: '#projects' },
+    { name: t('nav_contact'), key: 'nav_contact', href: '#contact' },
   ];
 
   useEffect(() => {
@@ -65,23 +67,38 @@ export default function Navbar({ activeSection, isDarkSection }) {
             })}
           </nav>
 
-          {/* CTA Button */}
-          <button
-            onClick={() => setIsContactModalOpen(true)}
-            className={`hidden md:inline-flex px-5 py-2 rounded-full text-sm font-semibold transition-all ${
-              isDarkSection
-                ? 'bg-white text-black hover:bg-gray-200'
-                : 'bg-black text-white hover:bg-gray-800'
-            }`}
-          >
-            Let's Talk
-          </button>
+          <div className="flex items-center gap-3 md:gap-6">
+            {/* Language Toggle */}
+            <button
+              onClick={toggleLanguage}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border transition-colors ${
+                isDarkSection 
+                  ? 'border-white/20 text-white hover:bg-white/10' 
+                  : 'border-black/20 text-black hover:bg-black/5'
+              }`}
+            >
+              <span className={language === 'en' ? 'opacity-100' : 'opacity-50'}>EN</span>
+              <span className="opacity-30">|</span>
+              <span className={language === 'id' ? 'opacity-100' : 'opacity-50'}>ID</span>
+            </button>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`md:hidden p-2 ${isDarkSection ? 'text-white' : 'text-black'}`}
-          >
+            {/* CTA Button */}
+            <button
+              onClick={() => setIsContactModalOpen(true)}
+              className={`hidden md:inline-flex px-5 py-2 rounded-full text-sm font-semibold transition-all ${
+                isDarkSection
+                  ? 'bg-white text-black hover:bg-gray-200'
+                  : 'bg-black text-white hover:bg-gray-800'
+              }`}
+            >
+              {t('btn_lets_talk')}
+            </button>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className={`md:hidden p-2 ${isDarkSection ? 'text-white' : 'text-black'}`}
+            >
             <div className="space-y-1.5">
               <span className={`block w-6 h-0.5 transition-all ${
                 mobileMenuOpen ? 'rotate-45 translate-y-2' : ''
@@ -94,6 +111,7 @@ export default function Navbar({ activeSection, isDarkSection }) {
               } ${isDarkSection ? 'bg-white' : 'bg-black'}`}></span>
             </div>
           </button>
+          </div>
         </div>
       </div>
 
@@ -123,7 +141,7 @@ export default function Navbar({ activeSection, isDarkSection }) {
               }}
               className="mt-4 block w-full text-center py-3 bg-black text-white rounded-full text-sm font-semibold"
             >
-              Let's Talk
+              {t('btn_lets_talk')}
             </button>
           </motion.div>
         )}
@@ -148,7 +166,7 @@ export default function Navbar({ activeSection, isDarkSection }) {
               className="relative w-full max-w-sm bg-white rounded-2xl shadow-2xl p-6 z-10"
             >
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-black text-black">Let's Talk</h3>
+                <h3 className="text-xl font-black text-black">{t('txt_contact')}</h3>
                 <button
                   onClick={() => setIsContactModalOpen(false)}
                   className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition-colors"
@@ -171,7 +189,7 @@ export default function Navbar({ activeSection, isDarkSection }) {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-black group-hover:text-gray-900">Email Me</p>
+                    <p className="text-sm font-bold text-black group-hover:text-gray-900">{t('txt_email_me')}</p>
                     <p className="text-xs text-gray-500 line-clamp-1">{portfolioData.personal.email}</p>
                   </div>
                 </a>
@@ -204,7 +222,7 @@ export default function Navbar({ activeSection, isDarkSection }) {
                   </div>
                   <div>
                     <p className="text-sm font-bold text-black group-hover:text-gray-900">Instagram</p>
-                    <p className="text-xs text-gray-500">View Profile</p>
+                    <p className="text-xs text-gray-500">{t('txt_view_profile')}</p>
                   </div>
                 </a>
               </div>

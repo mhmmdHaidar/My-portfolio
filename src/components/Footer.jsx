@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Clock, MapPin, ArrowUp, Check, Mail, MessageCircle, ExternalLink, Github, Linkedin, Instagram, Music, Printer } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Footer() {
+  const { language, t } = useLanguage();
   const { personal, socials } = portfolioData;
 
   const [time, setTime] = useState('');
@@ -45,7 +47,7 @@ export default function Footer() {
         <div className="mb-8">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-700/60 text-xs font-semibold text-green-400 print:hidden">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-            Available for new projects
+            {language === 'en' ? 'Available for new projects' : 'Tersedia untuk proyek baru'}
           </span>
         </div>
 
@@ -53,13 +55,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
           <div>
             <h2 className="text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] font-black leading-[1.05] tracking-tight mb-6">
-              Let's make<br />
-              something<br />
-              <span className="text-gray-600 italic">amazing</span>
+              {language === 'en' ? (
+                <>Let's make<br />something<br /><span className="text-gray-600 italic">amazing</span></>
+              ) : (
+                <>Mari ciptakan<br />sesuatu yang<br /><span className="text-gray-600 italic">luar biasa</span></>
+              )}
             </h2>
 
             <p className="text-gray-400 text-sm md:text-base max-w-sm mb-8">
-              {personal.tagline}
+              {personal.tagline[language] || personal.tagline}
             </p>
 
             <div className="flex flex-wrap gap-3 mb-8 print:hidden">
@@ -71,7 +75,7 @@ export default function Footer() {
                 <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:text-black transition-colors">
                   {copiedItem === 'Email' ? <Check size={14} /> : <Mail size={14} />}
                 </div>
-                <p className="text-sm font-bold text-white leading-none">{copiedItem === 'Email' ? 'Copied!' : 'Email Me'}</p>
+                <p className="text-sm font-bold text-white leading-none">{copiedItem === 'Email' ? (language === 'en' ? 'Copied!' : 'Tersalin!') : (language === 'en' ? 'Email Me' : 'Email Saya')}</p>
               </button>
 
               {/* WhatsApp (Direct Link) */}
@@ -147,10 +151,10 @@ export default function Footer() {
             <div>
               <p className="text-xs text-gray-500 uppercase tracking-[0.2em] font-semibold mb-4">MENU</p>
               <nav className="flex flex-wrap gap-x-6 gap-y-3">
-                <a href="#home" className="text-sm font-semibold text-white hover:text-gray-400 transition-colors">Home</a>
-                <a href="#about" className="text-sm font-semibold text-white hover:text-gray-400 transition-colors">About</a>
-                <a href="#projects" className="text-sm font-semibold text-white hover:text-gray-400 transition-colors">Projects</a>
-                <a href="#contact" className="text-sm font-semibold text-white hover:text-gray-400 transition-colors">Contact</a>
+                <a href="#home" className="text-sm font-semibold text-white hover:text-gray-400 transition-colors">{t('nav_home')}</a>
+                <a href="#about" className="text-sm font-semibold text-white hover:text-gray-400 transition-colors">{t('nav_about')}</a>
+                <a href="#projects" className="text-sm font-semibold text-white hover:text-gray-400 transition-colors">{t('nav_projects')}</a>
+                <a href="#contact" className="text-sm font-semibold text-white hover:text-gray-400 transition-colors">{t('nav_contact')}</a>
               </nav>
             </div>
 
@@ -226,7 +230,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-6 relative">
           <div className="flex flex-col gap-2 items-center md:items-start">
-            <p className="text-xs text-gray-500 text-center md:text-left">© {new Date().getFullYear()} {personal.name}. All rights reserved.</p>
+            <p className="text-xs text-gray-500 text-center md:text-left">© {new Date().getFullYear()} {personal.name}. {t('txt_all_rights')}</p>
           </div>
 
           <button

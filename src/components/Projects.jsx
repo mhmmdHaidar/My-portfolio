@@ -2,33 +2,44 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import ProjectModal from './ProjectModal';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Projects() {
+  const { language, t } = useLanguage();
   const { projects } = portfolioData;
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedProject, setSelectedProject] = useState(null);
   const [showAll, setShowAll] = useState(false);
 
   const categories = ['All', 'Web', 'Design', 'Other'];
+  
+  const categoryLabels = {
+    'All': language === 'en' ? 'All' : 'Semua',
+    'Web': 'Web',
+    'Design': language === 'en' ? 'Design' : 'Desain',
+    'Other': language === 'en' ? 'Other' : 'Lainnya'
+  };
 
   const filteredProjects = activeCategory === 'All'
     ? projects
-    : projects.filter(p => p.category === activeCategory);
+    : projects.filter(p => (p.category[language] || p.category) === categoryLabels[activeCategory] || p.category.en === activeCategory || p.category === activeCategory);
 
   const visibleProjects = showAll ? filteredProjects : filteredProjects.slice(0, 3);
 
   return (
-    <section id="projects" className="relative py-20 md:py-28 bg-[#f8f8f8] bg-dot-grid overflow-hidden print:block print:py-5 print:h-auto print:overflow-visible">
+    <section id="projects" className="relative py-20 md:py-28 bg-transparent bg-dot-grid overflow-hidden print:block print:py-5 print:h-auto print:overflow-visible">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         
         {/* Section Header */}
         <div className="text-center mb-12 print:mb-6">
-          <p className="text-xs text-gray-400 uppercase tracking-[0.25em] font-semibold mb-4 print:mb-2">PORTFOLIO</p>
+          <p className="text-xs text-gray-400 uppercase tracking-[0.25em] font-semibold mb-4 print:mb-2">
+            {language === 'en' ? 'PORTFOLIO' : 'PORTOFOLIO'}
+          </p>
           <h2 className="text-[2.5rem] sm:text-[3.5rem] md:text-[4rem] font-black text-black leading-[1.05] tracking-tight italic">
-            Featured Projects
+            {t('txt_projects')}
           </h2>
           <p className="text-gray-400 text-sm mt-4 print:mt-1 print:text-xs">
-            A collection of my recent work, side projects, and experiments.
+            {language === 'en' ? 'A collection of my recent work, side projects, and experiments.' : 'Kumpulan proyek terbaru, proyek sampingan, dan eksperimen saya.'}
           </p>
         </div>
 
@@ -46,7 +57,7 @@ export default function Projects() {
                     : 'bg-white text-gray-600 border-gray-200 hover:border-gray-400'
                 }`}
               >
-                {cat}
+                {categoryLabels[cat]}
               </button>
             );
           })}
@@ -89,10 +100,10 @@ export default function Projects() {
                     <h3 className="text-base font-extrabold text-black group-hover:underline underline-offset-2 print:text-sm">
                       {project.title}
                     </h3>
-                    <p className="text-xs text-gray-500 mt-1 print:text-[10px] print:mt-0.5 print:leading-tight">{project.shortDesc}</p>
+                    <p className="text-xs text-gray-500 mt-1 print:text-[10px] print:mt-0.5 print:leading-tight">{project.shortDesc[language] || project.shortDesc}</p>
                   </div>
                   <span className="shrink-0 px-3 py-1 rounded-full border border-gray-300 text-[11px] font-semibold text-gray-500 print:px-2 print:py-0 print:text-[9px]">
-                    {project.category}
+                    {project.category[language] || project.category}
                   </span>
                 </div>
               </motion.div>
@@ -108,7 +119,7 @@ export default function Projects() {
               onClick={() => setShowAll(true)}
               className="px-6 py-2.5 rounded-full border border-gray-300 text-sm font-semibold text-gray-700 hover:bg-gray-100 transition-colors flex items-center gap-2"
             >
-              Load More Projects
+              {language === 'en' ? 'Load More Projects' : 'Muat Lebih Banyak'}
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
