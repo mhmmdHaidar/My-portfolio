@@ -197,7 +197,7 @@ export default function Hero() {
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 bg-cyan-400 rounded-full shadow-[0_0_15px_4px_rgba(34,211,238,0.6)]"></div>
             </motion.div>
 
-            <div className="w-full h-full rounded-full overflow-hidden opacity-90 shadow-2xl relative">
+            <div className="w-full h-full rounded-full overflow-hidden shadow-2xl relative">
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent z-10 print:hidden"></div>
               <motion.img
                 initial={{ scale: 1.95, y: '0%', filter: 'blur(4px)' }}
