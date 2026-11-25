@@ -100,7 +100,7 @@ export const portfolioData = {
         { name: "RESTful API", level: { id: "Lanjutan", en: "Advanced" }, iconSlug: null, fallbackIcon: "webhook" },
         { name: "MySQL / MariaDB", level: { id: "Lanjutan", en: "Advanced" }, iconSlug: "mysql" },
         { name: "PostgreSQL", level: { id: "Menengah", en: "Intermediate" }, iconSlug: "postgresql" },
-        { name: "Firebase", level: { id: "Menengah", en: "Intermediate" }, iconSlug: "firebase" }
+        { name: "Supabase", level: { id: "Menengah", en: "Intermediate" }, iconSlug: "supabase" }
       ]
     },
     {
@@ -109,7 +109,6 @@ export const portfolioData = {
         { name: "Git & GitHub", level: { id: "Lanjutan", en: "Advanced" }, iconSlug: "git" },
         { name: "Vite / Webpack", level: { id: "Lanjutan", en: "Advanced" }, iconSlug: "vite" },
         { name: "Figma (UI/UX)", level: { id: "Menengah", en: "Intermediate" }, iconSlug: "figma" },
-        { name: "Postman", level: { id: "Lanjutan", en: "Advanced" }, iconSlug: "postman" },
         { name: "VS Code", level: { id: "Ahli", en: "Expert" }, iconSlug: null, fallbackIcon: "terminal" },
         { name: "Vercel / Netlify", level: { id: "Lanjutan", en: "Advanced" }, iconSlug: "vercel" }
       ]
