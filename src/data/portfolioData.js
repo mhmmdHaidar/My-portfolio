@@ -264,6 +264,50 @@ export const portfolioData = {
           "Integrated Business Information"
         ]
       }
+    },
+    {
+      id: "proj-5",
+      title: "Digital Khitanan Invitation Web",
+      category: { id: "Web", en: "Web" },
+      shortDesc: {
+        id: "Website undangan khitanan digital dwibahasa (ID/EN) bertema Islami modern dengan animasi cover pintu ganda, nama tamu dinamis, dan RSVP real-time.",
+        en: "Modern Islamic-themed bilingual (ID/EN) digital circumcision invitation web app featuring split-door cover animation, dynamic guest URLs, and real-time RSVP."
+      },
+      fullDesc: {
+        id: "Aplikasi web undangan khitanan digital berkonsep mobile-first dengan estetika navy & emas bergaya geometris Islami. Dilengkapi animasi pembuka pintu ganda, personalisasi nama tamu melalui parameter URL (?to=), pengalih bahasa ID/EN instan, kontrol musik latar, hitung mundur acara, integrasi Google Maps & Google Calendar, galeri foto interaktif, serta buku ucapan & RSVP berbasis Firebase Firestore.",
+        en: "A mobile-first digital circumcision invitation web application featuring an elegant navy-and-gold Islamic geometric aesthetic. Built with an animated split-door cover, dynamic guest personalization via URL query parameters (?to=), instant ID/EN language switching, background audio controls, live event countdown, Google Maps & Google Calendar integration, interactive photo gallery, and a real-time RSVP & guestbook powered by Firebase Firestore."
+      },
+      thumbnail: "/assets/undangan-digital/khitan-titan/uk1.webp",
+      images: [
+        "/assets/undangan-digital/khitan-titan/uk1.webp",
+        "/assets/undangan-digital/khitan-titan/uk2.webp",
+        "/assets/undangan-digital/khitan-titan/uk3.webp",
+        "/assets/undangan-digital/khitan-titan/uk4.webp",
+        "/assets/undangan-digital/khitan-titan/uk5.webp",
+        "/assets/undangan-digital/khitan-titan/uk6.webp",
+        "/assets/undangan-digital/khitan-titan/uk7.webp",
+        "/assets/undangan-digital/khitan-titan/uk8.webp",
+        "/assets/undangan-digital/khitan-titan/uk9.webp",
+      ],
+      tags: ["Vite", "JavaScript ES6+", "Tailwind CSS", "Firebase Firestore", "AOS"],
+      liveUrl: "https://undangan-khitan-titan-mhahardika-ba.vercel.app/",
+      githubUrl: "https://github.com/mhmmdHaidar/Undangan-khitan-Titan-Mhahardika-Bachtiar",
+      features: {
+        id: [
+          "Animasi Cover Pintu Ganda & Personalisasi Nama Tamu via URL (?to=)",
+          "Dukungan Dwibahasa Instan (Indonesia / Inggris) & Kontrol Musik Latar",
+          "Live Countdown Acara, Embed Google Maps & Tombol Save to Calendar",
+          "Buku Ucapan & Konfirmasi Kehadiran (RSVP) Real-Time dengan Firebase Firestore",
+          "Galeri Foto Interaktif dengan Lightbox & Animasi Scroll (AOS)"
+        ],
+        en: [
+          "Split-Door Cover Animation & Dynamic Guest Name via URL (?to=)",
+          "Instant Bilingual Switcher (ID / EN) & Background Music Controls",
+          "Live Event Countdown, Embedded Google Maps & Save to Calendar Integration",
+          "Real-Time RSVP & Guestbook Wishes powered by Firebase Firestore",
+          "Interactive Photo Gallery Lightbox & Scroll Animations (AOS)"
+        ]
+      }
     }
   ],
   certificates: [
