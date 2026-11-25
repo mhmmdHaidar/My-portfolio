@@ -116,6 +116,51 @@ export const portfolioData = {
   ],
   projects: [
     {
+      id: "proj-6",
+      title: "Uangku — Personal Finance PWA",
+      category: { id: "Web", en: "Web" },
+      shortDesc: {
+        id: "Aplikasi web mobile (PWA) pengelolaan keuangan pribadi dengan multi-dompet kartu digital, anggaran bulanan, grafik arus kas, dan asisten interaktif Tupi.",
+        en: "Installable mobile-first personal finance PWA featuring multi-wallet digital cards, monthly budgeting, interactive cashflow analytics, and the Tupi help assistant."
+      },
+      fullDesc: {
+        id: "Uangku adalah aplikasi Progressive Web App (PWA) manajemen keuangan pribadi berbasis Laravel, Inertia.js, React, Supabase, dan Tailwind CSS yang dirancang mobile-first dengan dukungan mode gelap/terang. Pengguna dapat mengelola banyak dompet (Bank, Cash, E-Wallet, Investasi) bergaya kartu digital yang dapat dikustomisasi, mencatat pemasukan, pengeluaran, dan transfer antar dompet secara cepat, mengatur anggaran bulanan per kategori, menganalisis tren arus kas & rasio tabungan dengan grafik interaktif, mengekspor laporan CSV, hingga mengikuti tur panduan 9 langkah dan bertanya langsung lewat asisten Tupi.",
+        en: "Uangku is a mobile-first Personal Finance Progressive Web App (PWA) built with Laravel, Inertia.js, React, Supabase, and Tailwind CSS with full Light/Dark mode support. Users can manage multiple wallets (Bank, Cash, E-Wallet, Investment) styled as customizable digital cards, quickly record income, expenses, and balance-neutral inter-wallet transfers, set monthly category budgets, analyze cashflow trends and savings ratios with interactive charts, export filtered CSV reports, and explore features via a 9-step mascot-guided onboarding tour and built-in Tupi Q&A assistant."
+      },
+      thumbnail: "/assets/uangku/u1.webp",
+      images: [
+        "/assets/uangku/u1.webp",
+        "/assets/uangku/u2.webp",
+        "/assets/uangku/u3.webp",
+        "/assets/uangku/u4.webp",
+        "/assets/uangku/u5.webp",
+        "/assets/uangku/u6.webp",
+        "/assets/uangku/u7.webp",
+        "/assets/uangku/u8.webp"
+      ],
+      tags: ["Laravel", "React", "Inertia.js", "Supabase", "Tailwind CSS", "PWA"],
+      liveUrl: "https://uangku-beta-two.vercel.app/",
+      githubUrl: "https://github.com/mhmmdHaidar/uangku",
+      features: {
+        id: [
+          "Installable Mobile-First PWA dengan Bottom Navigation & Mode Gelap/Terang",
+          "Multi-Dompet Kartu Digital (Bank, E-Wallet, Cash, Investasi) dengan 8 Tema Gradien",
+          "Pencatatan Kilat Pemasukan, Pengeluaran, Transfer Antar Dompet & Kategori Kustom",
+          "Anggaran Bulanan per Kategori, Analisis Alokasi & Evaluasi Rasio Tabungan Otomatis",
+          "Grafik Tren Arus Kas Interaktif (Bar/Area), Filter Multi-Periode & Ekspor CSV",
+          "Tur Panduan Interaktif 9 Langkah & Asisten Bantuan Tanya Tupi"
+        ],
+        en: [
+          "Installable Mobile-First PWA with Bottom Navigation & Light/Dark Mode",
+          "Multi-Wallet Digital Cards (Bank, E-Wallet, Cash, Investment) with 8 Gradient Themes",
+          "Quick Income, Expense, Balance-Neutral Inter-Wallet Transfers & Custom Categories",
+          "Monthly Category Budgeting, Allocation Breakdown & Automated Savings-Ratio Evaluation",
+          "Interactive Cashflow Trend Charts (Bar/Area), Multi-Period Filtering & CSV Export",
+          "9-Step Interactive Spotlight Onboarding Tour & Built-In Tanya Tupi Assistant"
+        ]
+      }
+    },
+    {
       id: "proj-1",
       title: "Monoalphabetic Cipher",
       category: { id: "Web", en: "Web" },
