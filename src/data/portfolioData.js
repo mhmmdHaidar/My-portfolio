@@ -18,9 +18,10 @@ export const portfolioData = {
       id: "Fokus utama saya adalah membangun solusi web yang scalable, responsif di semua perangkat, serta memiliki antarmuka yang bersih dan mudah digunakan oleh pengguna.",
       en: "My main focus is building web solutions that are scalable, responsive across all devices, and feature clean, user-friendly interfaces."
     },
+    portfolioUrl: "https://haidar-portofolio.vercel.app/",
+    spotifyUrl: "https://open.spotify.com/playlist/1pfIqB4U58IsW6UpDTQd4i?si=f61225d5ceff40a4",
     resumeUrl: "https://drive.google.com/uc?export=download&id=1Vv6-3Jg7wlBN6gL21fCOfkwl8U9J2RP8",
     avatarMain: "/assets/haidar2.webp",
-    avatarAlt: "/assets/haidar1.webp",
     aboutImages: [
       "/assets/aboutcard/haidar1.webp",
       "/assets/aboutcard/haidar2.webp",
@@ -42,19 +43,9 @@ export const portfolioData = {
     }
   ],
   socials: [
-    { name: "GitHub", url: "https://github.com/mhmmdHaidar/", icon: "Github" },
-    { name: "LinkedIn", url: "https://www.linkedin.com/in/muhammad-haidar-02998935a", icon: "Linkedin" },
-    { name: "Instagram", url: "https://www.instagram.com/hdarrrr_12", icon: "Instagram" }
-  ],
-  keywordsTicker: [
-    "Full-Stack Development",
-    "Modern Web Applications",
-    "React & Next.js",
-    "Laravel & API Systems",
-    "Responsive UI/UX Design",
-    "Tailwind CSS",
-    "Database Optimization",
-    "Performance & SEO"
+    { name: "GitHub", url: "https://github.com/mhmmdHaidar/" },
+    { name: "LinkedIn", url: "https://www.linkedin.com/in/muhammad-haidar-02998935a" },
+    { name: "Instagram", url: "https://www.instagram.com/hdarrrr_12" }
   ],
   experiences: [
     {
@@ -68,7 +59,7 @@ export const portfolioData = {
       skills: ["React", "Next.js", "Laravel", "Tailwind CSS", "REST API", "MySQL"]
     },
     {
-      period: "2023 - 2024",
+      period: { id: "2023 - 2024", en: "2023 - 2024" },
       role: { id: "Frontend Developer Specialist", en: "Frontend Developer Specialist" },
       company: "Digital Studio & Projects",
       description: {
@@ -78,7 +69,7 @@ export const portfolioData = {
       skills: ["React", "JavaScript (ES6+)", "Tailwind CSS", "Framer Motion", "Vite"]
     },
     {
-      period: "2022 - 2023",
+      period: { id: "2022 - 2023", en: "2022 - 2023" },
       role: { id: "Junior Web Developer", en: "Junior Web Developer" },
       company: "Academic & Community Projects",
       description: {
@@ -92,35 +83,35 @@ export const portfolioData = {
     {
       title: { id: "Frontend Development", en: "Frontend Development" },
       skills: [
-        { name: "React.js", level: { id: "Lanjutan", en: "Advanced" }, icon: "Code2" },
-        { name: "Next.js", level: { id: "Lanjutan", en: "Advanced" }, icon: "Globe" },
-        { name: "TypeScript / JS", level: { id: "Lanjutan", en: "Advanced" }, icon: "FileCode" },
-        { name: "Tailwind CSS", level: { id: "Ahli", en: "Expert" }, icon: "Palette" },
-        { name: "Framer Motion", level: { id: "Menengah", en: "Intermediate" }, icon: "Sparkles" },
-        { name: "HTML5 / CSS3", level: { id: "Ahli", en: "Expert" }, icon: "Layout" }
+        { name: "React.js", level: { id: "Lanjutan", en: "Advanced" }, iconSlug: "react" },
+        { name: "Next.js", level: { id: "Lanjutan", en: "Advanced" }, iconSlug: "nextdotjs" },
+        { name: "TypeScript / JS", level: { id: "Lanjutan", en: "Advanced" }, iconSlug: "typescript" },
+        { name: "Tailwind CSS", level: { id: "Ahli", en: "Expert" }, iconSlug: "tailwindcss" },
+        { name: "Framer Motion", level: { id: "Menengah", en: "Intermediate" }, iconSlug: "framer" },
+        { name: "HTML5 / CSS3", level: { id: "Ahli", en: "Expert" }, iconSlug: "html5" }
       ]
     },
     {
       title: { id: "Backend & Database", en: "Backend & Database" },
       skills: [
-        { name: "Node.js / Express", level: { id: "Menengah", en: "Intermediate" }, icon: "Server" },
-        { name: "Laravel (PHP)", level: { id: "Lanjutan", en: "Advanced" }, icon: "Cpu" },
-        { name: "Python", level: { id: "Menengah", en: "Intermediate" }, icon: "Code2" },
-        { name: "RESTful API", level: { id: "Lanjutan", en: "Advanced" }, icon: "Network" },
-        { name: "MySQL / MariaDB", level: { id: "Lanjutan", en: "Advanced" }, icon: "Database" },
-        { name: "PostgreSQL", level: { id: "Menengah", en: "Intermediate" }, icon: "Database" },
-        { name: "Firebase", level: { id: "Menengah", en: "Intermediate" }, icon: "Flame" }
+        { name: "Node.js / Express", level: { id: "Menengah", en: "Intermediate" }, iconSlug: "nodedotjs" },
+        { name: "Laravel (PHP)", level: { id: "Lanjutan", en: "Advanced" }, iconSlug: "laravel" },
+        { name: "Python", level: { id: "Menengah", en: "Intermediate" }, iconSlug: "python" },
+        { name: "RESTful API", level: { id: "Lanjutan", en: "Advanced" }, iconSlug: null, fallbackIcon: "webhook" },
+        { name: "MySQL / MariaDB", level: { id: "Lanjutan", en: "Advanced" }, iconSlug: "mysql" },
+        { name: "PostgreSQL", level: { id: "Menengah", en: "Intermediate" }, iconSlug: "postgresql" },
+        { name: "Firebase", level: { id: "Menengah", en: "Intermediate" }, iconSlug: "firebase" }
       ]
     },
     {
       title: { id: "Tools & Workflow", en: "Tools & Workflow" },
       skills: [
-        { name: "Git & GitHub", level: { id: "Lanjutan", en: "Advanced" }, icon: "GitBranch" },
-        { name: "Vite / Webpack", level: { id: "Lanjutan", en: "Advanced" }, icon: "Zap" },
-        { name: "Figma (UI/UX)", level: { id: "Menengah", en: "Intermediate" }, icon: "Figma" },
-        { name: "Postman", level: { id: "Lanjutan", en: "Advanced" }, icon: "Send" },
-        { name: "VS Code", level: { id: "Ahli", en: "Expert" }, icon: "Terminal" },
-        { name: "Vercel / Netlify", level: { id: "Lanjutan", en: "Advanced" }, icon: "Cloud" }
+        { name: "Git & GitHub", level: { id: "Lanjutan", en: "Advanced" }, iconSlug: "git" },
+        { name: "Vite / Webpack", level: { id: "Lanjutan", en: "Advanced" }, iconSlug: "vite" },
+        { name: "Figma (UI/UX)", level: { id: "Menengah", en: "Intermediate" }, iconSlug: "figma" },
+        { name: "Postman", level: { id: "Lanjutan", en: "Advanced" }, iconSlug: "postman" },
+        { name: "VS Code", level: { id: "Ahli", en: "Expert" }, iconSlug: null, fallbackIcon: "terminal" },
+        { name: "Vercel / Netlify", level: { id: "Lanjutan", en: "Advanced" }, iconSlug: "vercel" }
       ]
     }
   ],
@@ -130,7 +121,7 @@ export const portfolioData = {
       title: "Monoalphabetic Cipher",
       category: { id: "Web", en: "Web" },
       shortDesc: {
-        id: "Simulator untuk enkripsi presisi, Ubah teks biasa menjadi sandi rahasia dalam hitungan detik menggunakan algoritma Monoalphabetic Cipher berbasis web.",
+        id: "Simulator untuk enkripsi presisi. Ubah teks biasa menjadi sandi rahasia dalam hitungan detik menggunakan algoritma Monoalphabetic Cipher berbasis web.",
         en: "Precision encryption simulator. Turn plain text into secret cipher in seconds using a web-based Monoalphabetic Cipher algorithm."
       },
       fullDesc: {
@@ -143,15 +134,15 @@ export const portfolioData = {
         "/assets/monoalphabetic/ma2.webp",
         "/assets/monoalphabetic/ma3.webp"
       ],
-      tags: ["React", "Vanilla css", "JavaScript ES6+", "Vite"],
+      tags: ["React", "Vanilla CSS", "JavaScript ES6+", "Vite"],
       liveUrl: "#",
       githubUrl: "https://github.com/mhmmdHaidar/Monoalphabetic-app",
       features: {
         id: [
-          "Simulator ini berjalan sepenuhnya di sisi klien (Client-Side).",
-          "Interaktif 3D animasi",
+          "Simulator ini berjalan sepenuhnya di sisi klien (Client-Side)",
+          "Animasi 3D interaktif",
           "Mode Gelap / Terang responsif",
-          "Enkripsi & Dekripsi teks dengan algoritma Monoalphabetic Cipher"
+          "Enkripsi & dekripsi teks dengan algoritma Monoalphabetic Cipher"
         ],
         en: [
           "100% Client-Side Simulator",
@@ -185,13 +176,13 @@ export const portfolioData = {
       githubUrl: "https://github.com/mhmmdHaidar/smart-inventory",
       features: {
         id: [
-          "Role Based Access Control (Superadmin, Manager, Staff)",
-          "Automated Stock In/Out Logs & Low Stock Notifications",
-          "Interactive Financial & Transaction Analytics Dashboard",
-          "Export Laporan PDF & Excel 1-Klik"
+          "Role-Based Access Control (Superadmin, Manager, Staff)",
+          "Log Keluar/Masuk Stok Otomatis & Notifikasi Stok Menipis",
+          "Dashboard Analitik Keuangan & Transaksi Interaktif",
+          "Ekspor Laporan PDF & Excel 1-Klik"
         ],
         en: [
-          "Role Based Access Control (Superadmin, Manager, Staff)",
+          "Role-Based Access Control (Superadmin, Manager, Staff)",
           "Automated Stock In/Out Logs & Low Stock Notifications",
           "Interactive Financial & Transaction Analytics Dashboard",
           "1-Click PDF & Excel Report Export"
@@ -203,7 +194,7 @@ export const portfolioData = {
       title: "CareerAI - Job Matcher & Skill Gap Analyzer",
       category: { id: "Web", en: "Web" },
       shortDesc: {
-        id: "Career adalah platform berbasis AI yang dirancang untuk membantu mahasiswa dan fresh graduate mempersiapkan diri menghadapi dunia kerja profesional.",
+        id: "CareerAI adalah platform berbasis AI yang dirancang untuk membantu mahasiswa dan fresh graduate mempersiapkan diri menghadapi dunia kerja profesional.",
         en: "CareerAI is an AI-driven platform designed to help students and fresh graduates prepare for the professional workforce."
       },
       fullDesc: {
@@ -224,7 +215,7 @@ export const portfolioData = {
       githubUrl: "https://github.com/mhmmdHaidar/AI-Career",
       features: {
         id: [
-          "Ekstraksi CV PDF Instant",
+          "Ekstraksi CV PDF Instan",
           "Analisis Skill Gap & Rekomendasi Karir",
           "Simulasi Wawancara Interaktif",
           "Peta Skill Gap & Roadmap"
@@ -246,7 +237,7 @@ export const portfolioData = {
         en: "Landing page for a coffee shop featuring a modern and interactive design."
       },
       fullDesc: {
-        id: "Aplikasi website berkonsep Company Profile & Digital Menu untuk bisnis coffee shop. Dibangun dari hulu ke hilir memadukan keandalan Laravel sebagai backend dan React.js lewat jembatan Inertia.js untuk pengalaman antarmuka SPA (Single Page Application) yang mulus. Mengusung tema visual yang modern.",
+        id: "Aplikasi website berkonsep Company Profile & Digital Menu untuk bisnis coffee shop. Dibangun dari hulu ke hilir memadukan keandalan Laravel sebagai backend dan React.js lewat jembatan Inertia.js untuk pengalaman antarmuka SPA (Single Page Application) yang mulus dengan tema visual yang modern.",
         en: "A Company Profile & Digital Menu web application for coffee shop businesses. Built end-to-end utilizing the reliability of Laravel as backend and React.js via Inertia.js for a smooth SPA (Single Page Application) interface, emphasizing a modern visual theme."
       },
       thumbnail: "/assets/Coffeeshop/khi1.webp",
@@ -255,7 +246,7 @@ export const portfolioData = {
         "/assets/Coffeeshop/khi2.webp",
         "/assets/Coffeeshop/khi3.webp"
       ],
-      tags: ["React", "laravel", "Tailwind CSS", "Framer Motion", "Filament"],
+      tags: ["React", "Laravel", "Tailwind CSS", "Framer Motion", "Filament"],
       liveUrl: "#",
       githubUrl: "https://github.com/mhmmdHaidar/CoffeeShop-Landing-Page",
       features: {
@@ -263,8 +254,8 @@ export const portfolioData = {
           "Desain Modern & Responsif",
           "Digital Menu Interaktif",
           "Galeri & Ambience",
-          "Admin Panel kebutuhan Konten",
-          "Informasi Bisnis Integratif"
+          "Admin Panel Manajemen Konten",
+          "Informasi Bisnis Terintegrasi"
         ],
         en: [
           "Modern & Responsive Design",
@@ -281,7 +272,7 @@ export const portfolioData = {
       id: "cert-1",
       image: "/assets/certificates/wpu.webp",
       title: "Course Laravel WPU",
-      issuer: "WPU ( Web Programming Unpas )",
+      issuer: "WPU (Web Programming Unpas)",
       year: "2026",
       description: {
         id: "Mempelajari pengembangan aplikasi web modern berbasis framework Laravel, mencakup arsitektur MVC, pengolahan database dengan Eloquent ORM, serta pembuatan RESTful API.",
@@ -317,14 +308,14 @@ export const portfolioData = {
       issuer: "HMTI UBSI",
       year: "2024",
       description: {
-        id: "mengasah jiwa kepemimpinan (leadership), meningkatkan kesadaran diri (self-awareness), sertamembangun orientasi kerja sama dalam tim.",
+        id: "Mengasah jiwa kepemimpinan (leadership), meningkatkan kesadaran diri (self-awareness), serta membangun orientasi kerja sama dalam tim.",
         en: "Honed leadership skills, increased self-awareness, and built a foundation for robust teamwork and collaboration."
       }
     },
     {
       id: "cert-5",
       image: "/assets/certificates/wakil.webp",
-      title: "Wakil Ketua Koordinasi HMTI UBSi",
+      title: "Wakil Ketua Koordinasi HMTI UBSI",
       issuer: "HMTI UBSI",
       year: "2026",
       description: {

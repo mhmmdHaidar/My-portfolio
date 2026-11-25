@@ -1,56 +1,78 @@
 import React, { useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { Code2, Terminal, Braces, Cpu, ArrowRight } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
-import { Code2, Terminal, Braces, Cpu } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+
+const FLOATING_SHAPES = [
+  { Icon: Code2, size: 24, position: 'top-[10%] left-0 md:-left-12', delay: 0 },
+  { Icon: Terminal, size: 24, position: 'bottom-[15%] left-4 md:-left-8', delay: 1.5 },
+  { Icon: Braces, size: 28, position: 'top-[20%] right-0 md:-right-8', delay: 0.8 },
+  { Icon: Cpu, size: 26, position: 'bottom-[25%] right-4 md:-right-4', delay: 2.2 },
+];
+
+function ExploreButton({ label }) {
+  return (
+    <a
+      href="#projects"
+      className="inline-flex items-center gap-3 px-8 py-3.5 bg-white text-black rounded-full text-[15px] font-bold hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 group/btn"
+    >
+      <span>{label}</span>
+      <ArrowRight
+        size={20}
+        strokeWidth={2.5}
+        className="group-hover/btn:translate-x-1 group-hover/btn:-rotate-45 transition-transform duration-300"
+      />
+    </a>
+  );
+}
 
 export default function Hero() {
   const { language, t } = useLanguage();
-  const { personal, keywordsTicker } = portfolioData;
+  const { personal } = portfolioData;
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
 
-  // Generate random particles once
-  const particles = useMemo(() => {
-    return [...Array(30)].map(() => ({
-      size: Math.random() * 4 + 2, // 2px to 6px
-      left: Math.random() * 100,
-      top: Math.random() * 100,
-      duration: Math.random() * 15 + 15, // 15s to 30s
-      delay: Math.random() * 5,
-      xOffset: Math.random() * 100 - 50,
-      baseOpacity: 0.3 + Math.random() * 0.5
-    }));
-  }, []);
-
-  const floatingShapes = [
-    { icon: <Code2 size={24} />, position: 'top-[10%] left-0 md:-left-12', delay: 0 },
-    { icon: <Terminal size={24} />, position: 'bottom-[15%] left-4 md:-left-8', delay: 1.5 },
-    { icon: <Braces size={28} />, position: 'top-[20%] right-0 md:-right-8', delay: 0.8 },
-    { icon: <Cpu size={26} />, position: 'bottom-[25%] right-4 md:-right-4', delay: 2.2 },
-  ];
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 16 }, () => ({
+        size: Math.random() * 4 + 2,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        duration: Math.random() * 15 + 15,
+        delay: Math.random() * 5,
+        xOffset: Math.random() * 100 - 50,
+        baseOpacity: 0.3 + Math.random() * 0.5,
+      })),
+    []
+  );
 
   return (
-    <section id="home" className="relative min-h-screen bg-gradient-to-br from-slate-950 via-[#0e0e1a] to-[#0a0c1a] flex flex-col justify-between overflow-hidden print:bg-white print:block print:min-h-0 print:h-auto print:overflow-visible">
+    <section
+      id="home"
+      className="relative min-h-screen bg-gradient-to-br from-slate-950 via-[#0e0e1a] to-[#0a0c1a] flex flex-col justify-between overflow-hidden print:bg-white print:block print:min-h-0 print:h-auto print:overflow-visible"
+    >
+      {/* Dynamic background glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-indigo-500/20 via-blue-900/10 to-transparent pointer-events-none z-0 print:hidden" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-cyan-500/20 via-transparent to-transparent pointer-events-none z-0 print:hidden" />
+      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none z-0 print:hidden" />
+      <div className="absolute bottom-[-10%] right-1/4 w-[600px] h-[600px] bg-blue-600/10 blur-[130px] rounded-full pointer-events-none z-0 print:hidden" />
 
-      {/* Dynamic Background glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-indigo-500/20 via-blue-900/10 to-transparent pointer-events-none z-0 print:hidden"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-cyan-500/20 via-transparent to-transparent pointer-events-none z-0 print:hidden"></div>
-      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none z-0 print:hidden"></div>
-      <div className="absolute bottom-[-10%] right-1/4 w-[600px] h-[600px] bg-blue-600/10 blur-[130px] rounded-full pointer-events-none z-0 print:hidden"></div>
-      
-      {/* Subtle Dot Matrix Grid */}
-      <div 
+      {/* Subtle dot matrix grid */}
+      <div
         className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none print:hidden"
-        style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}
-      ></div>
+        style={{
+          backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+          backgroundSize: '32px 32px',
+        }}
+      />
 
-      {/* Floating Particles (WOW Effect) */}
+      {/* Floating particles */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none print:hidden">
-        {particles.map((p, i) => (
+        {particles.map((p, idx) => (
           <motion.div
-            key={i}
-            className="absolute rounded-full bg-white"
+            key={idx}
+            className="absolute rounded-full bg-white will-change-transform"
             style={{
               width: p.size,
               height: p.size,
@@ -62,101 +84,120 @@ export default function Hero() {
               y: [0, -200, 0],
               x: [0, p.xOffset, 0],
               opacity: [0, p.baseOpacity, 0],
-              scale: [0.5, 1.2, 0.5]
+              scale: [0.5, 1.2, 0.5],
             }}
             transition={{
               duration: p.duration,
               repeat: Infinity,
-              ease: "linear",
-              delay: p.delay
+              ease: 'linear',
+              delay: p.delay,
             }}
           />
         ))}
       </div>
 
-      {/* Vertical Drifting Typography Watermarks */}
-      <div className="absolute inset-y-0 left-[-2%] md:left-4 z-0 flex flex-row items-center justify-center gap-2 md:gap-6 pointer-events-none select-none overflow-hidden">
-        {/* WM 1: CREATIVE DEVELOPER */}
-        <motion.div 
+      {/* Decorative vertical typography watermarks */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-y-0 left-[-2%] md:left-4 z-0 flex flex-row items-center justify-center gap-2 md:gap-6 pointer-events-none select-none overflow-hidden"
+      >
+        <motion.div
           animate={{ y: ['-20%', '20%', '-20%'] }}
           transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
           className="whitespace-nowrap"
           style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
         >
-          <h1 className="text-[7rem] sm:text-[9rem] md:text-[11rem] lg:text-[14rem] font-black leading-none tracking-tighter text-white/10 print:text-black/5">
+          <span className="block text-[7rem] sm:text-[9rem] md:text-[11rem] lg:text-[14rem] font-black leading-none tracking-tighter text-white/10 print:text-black/5">
             CREATIVE DEVELOPER
-          </h1>
+          </span>
         </motion.div>
 
-        {/* WM 2: HAIDAR */}
-        <motion.div 
+        <motion.div
           animate={{ y: ['20%', '-20%', '20%'] }}
           transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
           className="whitespace-nowrap"
           style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
         >
-          <h1 className="text-[7rem] sm:text-[9rem] md:text-[11rem] lg:text-[14rem] font-black leading-none tracking-tighter text-transparent opacity-20 print:opacity-10" style={{ WebkitTextStroke: '3px white' }}>
+          <span
+            className="block text-[7rem] sm:text-[9rem] md:text-[11rem] lg:text-[14rem] font-black leading-none tracking-tighter text-transparent opacity-20 print:opacity-10"
+            style={{ WebkitTextStroke: '3px white' }}
+          >
             HAIDAR
-          </h1>
+          </span>
         </motion.div>
       </div>
 
       <motion.div
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.5, 0.7, 0.5]
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.7, 0.5] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
         className="hero-glow absolute inset-0 pointer-events-none z-0 print:hidden"
-      ></motion.div>
+      />
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col lg:flex-row items-center justify-center relative z-10 px-6 pt-28 pb-20 w-full max-w-7xl mx-auto gap-12 lg:gap-24 print:block print:pt-10 print:pb-10">
-
         {/* Left Side: Hero Text */}
         <div className="relative z-30 flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
-          
-          {/* Print only Vercel Link at the top */}
+          {/* Print-only live link */}
           <div className="hidden print:block mb-6 print:w-full print:text-center">
-            <p className="text-sm text-gray-600 mb-1">
-              {t('txt_interactive_portfolio')}
-            </p>
-            <a href="https://haidar-portofolio.vercel.app/" target="_blank" rel="noreferrer" className="text-black font-bold border-b border-gray-500 text-base">
+            <p className="text-sm text-gray-600 mb-1">{t('txt_interactive_portfolio')}</p>
+            <a
+              href={personal.portfolioUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-black font-bold border-b border-gray-500 text-base"
+            >
               {t('btn_visit_web')}
             </a>
           </div>
 
-          <motion.h1 
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold tracking-wider uppercase text-indigo-300 print:border-gray-300 print:text-gray-700"
+          >
+            {personal.nickname} — {personal.role}
+          </motion.p>
+
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5rem] xl:text-[5.5rem] font-black text-white leading-[1.1] tracking-tight print:text-black"
           >
-            <motion.span 
-              initial={{ color: "#ffffff" }}
-              whileHover={{ textShadow: "0px 0px 25px rgba(255,255,255,0.8)" }}
+            <motion.span
+              initial={{ color: '#ffffff' }}
+              whileHover={{ textShadow: '0px 0px 25px rgba(255,255,255,0.8)' }}
               transition={{ duration: 0.3 }}
               className="inline-block cursor-default"
             >
-              {language === 'en' ? 'Welcome to My Portfolio.' : 'Selamat Datang di Portofolio Saya.'}
+              {t('txt_hero_headline')}
             </motion.span>
           </motion.h1>
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
+            transition={{ duration: 1, delay: 0.5 }}
             className="mt-6 md:mt-8 space-y-2 relative"
           >
-            <p className="text-gray-400 text-sm md:text-lg max-w-lg font-medium print:text-gray-700">
+            <p className="text-gray-300 text-sm md:text-lg max-w-lg font-medium print:text-gray-700">
               {language === 'en' ? (
-                <>I craft modern web experiences that are{' '}
-                <span className="text-white font-bold underline decoration-gray-500 underline-offset-4 decoration-2 print:text-black">scalable</span>,{' '}
-                interactive, and visually striking.</>
+                <>
+                  I craft modern web experiences that are{' '}
+                  <span className="text-white font-bold underline decoration-gray-500 underline-offset-4 decoration-2 print:text-black">
+                    scalable
+                  </span>
+                  , interactive, and visually striking.
+                </>
               ) : (
-                <>Saya merancang pengalaman web modern yang{' '}
-                <span className="text-white font-bold underline decoration-gray-500 underline-offset-4 decoration-2 print:text-black">scalable</span>,{' '}
-                interaktif, dan memukau secara visual.</>
+                <>
+                  Saya merancang pengalaman web modern yang{' '}
+                  <span className="text-white font-bold underline decoration-gray-500 underline-offset-4 decoration-2 print:text-black">
+                    scalable
+                  </span>
+                  , interaktif, dan memukau secara visual.
+                </>
               )}
             </p>
           </motion.div>
@@ -164,18 +205,10 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
             className="mt-10 hidden lg:block print:hidden"
           >
-            <a
-              href="#projects"
-              className="inline-flex items-center gap-3 px-8 py-3.5 bg-white text-black rounded-full text-[15px] font-bold hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 group/btn"
-            >
-              <span>{t('btn_explore')}</span>
-              <svg className="w-5 h-5 group-hover/btn:translate-x-1 group-hover/btn:-rotate-45 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </a>
+            <ExploreButton label={t('btn_explore')} />
           </motion.div>
         </div>
 
@@ -188,23 +221,23 @@ export default function Hero() {
             {/* Orbiting ring with glowing meteors */}
             <motion.div
               animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
               className="absolute inset-[-10%] border border-gray-800/80 rounded-full border-t-indigo-500/30 border-r-cyan-500/30 print:hidden"
             >
-              {/* Glowing Meteor 1 */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-indigo-400 rounded-full shadow-[0_0_15px_4px_rgba(99,102,241,0.6)]"></div>
-              {/* Glowing Meteor 2 */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 bg-cyan-400 rounded-full shadow-[0_0_15px_4px_rgba(34,211,238,0.6)]"></div>
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-indigo-400 rounded-full shadow-[0_0_15px_4px_rgba(99,102,241,0.6)]" />
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 bg-cyan-400 rounded-full shadow-[0_0_15px_4px_rgba(34,211,238,0.6)]" />
             </motion.div>
 
             <div className="w-full h-full rounded-full overflow-hidden shadow-2xl relative">
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent z-10 print:hidden"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent z-10 print:hidden" />
               <motion.img
                 initial={{ scale: 1.95, y: '0%', filter: 'blur(4px)' }}
                 animate={{ scale: 1.65, y: '-8%', filter: 'blur(0px)' }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
+                transition={{ duration: 1.5, ease: 'easeOut' }}
                 src={personal.avatarMain}
                 alt={personal.name}
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-full object-cover object-center pointer-events-auto print:hidden"
               />
               <img
@@ -215,47 +248,30 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Abstract Floating Shapes */}
-          {floatingShapes.map((shape, idx) => (
+          {/* Abstract floating shapes */}
+          {FLOATING_SHAPES.map(({ Icon, size, position, delay }, idx) => (
             <motion.div
               key={idx}
-              animate={{ 
-                y: [0, -15, 0],
-                rotate: [0, 10, -10, 0]
-              }}
-              transition={{ 
-                duration: 6, 
-                repeat: Infinity, 
-                ease: "easeInOut",
-                delay: shape.delay 
-              }}
-              className={`absolute ${shape.position} flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl text-white/50 shadow-2xl z-30 pointer-events-none print:hidden`}
+              aria-hidden="true"
+              animate={{ y: [0, -15, 0], rotate: [0, 10, -10, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay }}
+              className={`absolute ${position} flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl text-white/50 shadow-2xl z-30 pointer-events-none print:hidden`}
             >
-              {shape.icon}
+              <Icon size={size} />
             </motion.div>
           ))}
         </div>
 
-        {/* Mobile Button (Explore My Work) shown BELOW portrait */}
+        {/* Mobile CTA button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
           className="w-full flex justify-center lg:hidden mt-4 relative z-30 print:hidden"
         >
-          <a
-            href="#projects"
-            className="inline-flex items-center gap-3 px-8 py-3.5 bg-white text-black rounded-full text-[15px] font-bold hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 group/btn"
-          >
-            <span>{t('btn_explore')}</span>
-            <svg className="w-5 h-5 group-hover/btn:translate-x-1 group-hover/btn:-rotate-45 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-            </svg>
-          </a>
+          <ExploreButton label={t('btn_explore')} />
         </motion.div>
-
       </div>
-
     </section>
   );
 }
